@@ -1,8 +1,12 @@
 # Module 4 Summary - Analytics Engineering with dbt
 
+#DataEngineeringZoomcamp #dbt #AnalyticsEngineering #DataModeling
+
 ---
 
-## What is Analytics Engineering? 🎯
+## Part 1: Introduction to Analytics Engineering & dbt Fundamentals 🎯
+
+### What is Analytics Engineering?
 
 ### The Evolution of Data Roles
 
@@ -110,9 +114,9 @@ dbt follows a simple principle: **write SQL, dbt handles the rest**.
 
 ---
 
-## Dimensional Modeling Basics 📐
+## Part 2: dbt Project Structure & Building Models 📁
 
-### Why Model Data?
+### Why Model Data? 📐
 
 Raw data is messy and hard to query. Dimensional modeling organizes data into a structure that's:
 - Easy to understand
@@ -123,7 +127,7 @@ Raw data is messy and hard to query. Dimensional modeling organizes data into a 
 
 This is the core of dimensional modeling (also called "star schema"):
 
-#### Fact Tables (`fct_`)
+**Fact Tables (`fct_`)**
 - Contain **measurements** or **events**
 - One row per thing that happened
 - Usually have many rows (millions/billions)
@@ -149,7 +153,7 @@ SELECT
 FROM transformed_trips;
 ```
 
-#### Dimension Tables (`dim_`)
+**Dimension Tables (`dim_`)**
 - Contain **attributes** or **descriptive information**
 - One row per entity
 - Usually fewer rows
@@ -207,7 +211,7 @@ ORDER BY total_revenue DESC;
 
 ---
 
-## dbt Project Structure 📁
+### dbt Project Structure
 
 A dbt project has a specific folder structure. Understanding this helps you navigate any project:
 
@@ -251,7 +255,7 @@ models:
 
 dbt recommends organizing models into three layers:
 
-#### 1. Staging Layer (`staging/`)
+**1. Staging Layer (`staging/`)**
 
 **Purpose:** Clean copy of raw data with minimal transformations
 
@@ -285,7 +289,7 @@ select
 from tripdata
 ```
 
-#### 2. Intermediate Layer (`intermediate/`)
+**2. Intermediate Layer (`intermediate/`)**
 
 **Purpose:** Complex transformations, joins, business logic
 
@@ -312,7 +316,7 @@ union all
 select * from yellow_trips
 ```
 
-#### 3. Marts Layer (`marts/`)
+**3. Marts Layer (`marts/`)**
 
 **Purpose:** Final, business-ready tables for end users
 
@@ -347,7 +351,7 @@ left join {{ ref('dim_zones') }} z_dropoff
 
 ---
 
-## Sources and the `source()` Function 📥
+### Sources and the `source()` Function 📥
 
 ### What are Sources?
 
@@ -385,7 +389,7 @@ SELECT * FROM {{ source('staging', 'green_tripdata') }}
 
 ---
 
-## The `ref()` Function - Building Dependencies 🔗
+### The `ref()` Function - Building Dependencies 🔗
 
 This is **the most important dbt function!**
 
@@ -435,7 +439,7 @@ When you run `dbt build`, models run in dependency order automatically!
 
 ---
 
-## Seeds - Loading CSV Files 🌱
+### Seeds - Loading CSV Files 🌱
 
 Seeds let you load small CSV files into your warehouse as tables.
 
@@ -487,7 +491,9 @@ from {{ ref('taxi_zone_lookup') }}
 
 ---
 
-## Macros - Reusable SQL Functions 🔧
+## Part 3: Testing, Documentation & Deployment 🚀
+
+### Macros - Reusable SQL Functions 🔧
 
 Macros are like functions in Python - write once, use everywhere.
 
@@ -545,7 +551,7 @@ dbt uses **Jinja** - a Python templating language. You'll recognize it by `{{ }}
 
 ---
 
-## dbt Packages - Community Libraries 📦
+### dbt Packages - Community Libraries 📦
 
 Packages let you use macros and models built by others.
 
@@ -586,11 +592,11 @@ from {{ source('staging', 'green_tripdata') }}
 
 ---
 
-## Testing in dbt 🧪
+### Testing in dbt 🧪
 
 Tests ensure your data meets expectations. dbt has several test types:
 
-### 1. Generic Tests (Most Common)
+**1. Generic Tests (Most Common)**
 
 Built-in tests you apply in YAML:
 
@@ -626,7 +632,7 @@ models:
 | `accepted_values` | Values must be in specified list |
 | `relationships` | Values must exist in another table |
 
-### 2. Singular Tests
+**2. Singular Tests**
 
 Custom SQL tests in the `tests/` folder:
 
@@ -641,7 +647,7 @@ from {{ ref('fct_trips') }}
 where fare_amount < 0  -- Find negative fares (bad data!)
 ```
 
-### 3. Source Freshness Tests
+**3. Source Freshness Tests**
 
 Check if your source data is up to date:
 
@@ -671,7 +677,7 @@ dbt build
 
 ---
 
-## Documentation 📝
+### Documentation 📝
 
 dbt generates beautiful documentation automatically!
 
@@ -717,7 +723,7 @@ This creates an interactive website with:
 
 ---
 
-## Essential dbt Commands 💻
+### Essential dbt Commands 💻
 
 ### The Big Four
 
@@ -783,7 +789,7 @@ dbt run --target prod
 
 ---
 
-## Materializations - Views vs Tables 📊
+### Materializations - Views vs Tables 📊
 
 Materialization controls how dbt persists your models in the warehouse.
 
@@ -847,7 +853,7 @@ models:
 
 ---
 
-## Putting It All Together - The NYC Taxi Project 🚕
+### Putting It All Together - The NYC Taxi Project 🚕
 
 In this module, we build a complete dbt project for NYC taxi data:
 
@@ -898,7 +904,7 @@ In this module, we build a complete dbt project for NYC taxi data:
 
 ---
 
-## Setup Options 🔧
+### Setup Options 🔧
 
 ### Option 1: Local Setup (DuckDB + dbt Core)
 
@@ -933,7 +939,7 @@ dbt build --target prod
 
 ---
 
-## Troubleshooting Common Issues 🔍
+### Troubleshooting Common Issues 🔍
 
 ### "Profile not found"
 - Check `dbt_project.yml` profile name matches `profiles.yml`
@@ -956,7 +962,7 @@ settings:
 
 ---
 
-## Key Takeaways 🎓
+### Key Takeaways 🎓
 
 1. **Analytics Engineering** bridges data engineering and data analysis
 
@@ -976,7 +982,7 @@ settings:
 
 ---
 
-## Additional Resources 📚
+### Additional Resources 📚
 
 - [dbt Documentation](https://docs.getdbt.com/)
 - [dbt Fundamentals Course](https://learn.getdbt.com/courses/dbt-fundamentals) (free)
