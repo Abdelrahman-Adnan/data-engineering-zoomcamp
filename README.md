@@ -10,6 +10,7 @@
 | 04 | Analytics Engineering | [Summary](04-analytics-engineering/module_04_summary.md) · [HW Solutions](04-analytics-engineering/hw_4_solutions.md) |
 | 05 | Data Platforms (Bruin) | [Summary](05-data-platforms/module_05_summary.md) · [HW Solutions](05-data-platforms/hw_5_solutions.md) |
 | 06 | Batch Processing (Spark) | [Summary](06-batch-processing/module_06_summary.md) · [HW Solutions](06-batch-processing/hw_6_solutions.md) |
+| 07 | Stream Processing (Redpanda & PyFlink) | [Summary](07-streaming-processing/module_07_summary.md) · [HW Solutions](07-streaming-processing/hw_7_solutions.md) |
 
 ## Workshops
 
